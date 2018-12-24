@@ -16,5 +16,9 @@ SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'ab{2}' "ab"字符�
 SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'ab{2,4}' 最少2次 最多4次
 
 插入 INSERT INTO 增加新数据 
+
 更新 UPDATE 
+
+UPDATE SET
 删除 DELETE
+DELETE FROM medicine WHERE id = 1005 
