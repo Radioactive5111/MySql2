@@ -7,4 +7,14 @@ SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'c$'
 SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '^h..t$'  以h开头t结尾 中间两个字母所有单词
 SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '[bc]'  至少包含一个b或c
 SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '{^bc]'  不包括d 包括c   ^表示补集 取相反
-SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '[^a-w0-9]' 不包含字母数字 
+SELECT * FROM operate[表名] WHERE name[表项]LIKE 7REGEXP '[^a-w0-9]' 不包含字母数字 
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'ac||bb||ca' ac或bb或ca
+“ * ”  “ + ” 匹配多个字符
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'a*c' c前a可以0次 可以1次
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'a+c' c前a必须出现一次
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'ab{2}' "ab"字符串 必须连续出现2次
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'ab{2,4}' 最少2次 最多4次
+
+插入 INSERT INTO 增加新数据 
+更新 UPDATE 
+删除 DELETE
