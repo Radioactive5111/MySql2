@@ -1,0 +1,10 @@
+'^ab' 所有开头ab的信息
+'c$' 所有c结尾的信息
+'^a...b$' 用点号代替中间字符 
+[abc] 包含a b c任意一个的所有信息
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '^ab'
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP 'c$'
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '^h..t$'  以h开头t结尾 中间两个字母所有单词
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '[bc]'  至少包含一个b或c
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '{^bc]'  不包括d 包括c   ^表示补集 取相反
+SELECT * FROM operate[表名] WHERE name[表项]LIKE REGEXP '[^a-w0-9]' 不包含字母数字 
