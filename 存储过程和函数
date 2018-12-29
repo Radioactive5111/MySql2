@@ -73,6 +73,15 @@ ALTER { PROCEDURE | FUNCTION } MODIFIES SQL DATA SQL SECURITY INVOKER
 DROP PROCEDURE ...
 
 
+作业
+在teacher表上创建名为teacher_info1a和teacher_info1b的存储过程和名为teacher_info2的存储函数。（1）存储过程teacher_info1a的要求：
+输入参数teacher_id,一个输出参数info，查询出与teacher_id值相等的姓名，由info输出；
+（2）存储过程teacher_info1b的要求：
+输入参数teacher_id,一个输出参数info，查询出与teacher_id值相等者的年龄，由info输出。
+（2）分别调用这两个存储过程；查询info的输出结果。
+（3）删除teacher_info1a这个存储过程。（4）把存储过程teacher_info1b改为存储函数teacher_info2，并测试。
+
+
 
 
 
