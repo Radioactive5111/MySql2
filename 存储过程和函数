@@ -1,1 +1,79 @@
+创建存储过程P
+CREATE PROCEDURE sp_name
+([proc_parameter[...]])
+(characteristic..) routine_body              //特性   程序体begin end
+[IN|OUT|INOUT] para TYPE                     //指定输入输出 名称 数据类型(int,float等) 不限数量
+
+characteristic :
+{CONTAIN SQL|NO SQL |READS SQL DATA |MODIFIES SQL DATA}   //包含 不包含 读 写 数据
+|SQL SECURITY {DEFINER | INVOKER}
+
+实例 :
+DELIMITER //                                          //要把截止符改掉成// delimiter //
+CREATE PROCEDURE num_fro_employee 
+(IN emp_id INT, OUT num_name VARCHAR(20))             //输入1个参数 输出1个
+READS SQL DATA                                        //特性：读数据
+  BEGIN                                               //routine_body : begin...end
+   SELECT name INTO num_name                          // 把查到的写到 num_name里面
+   FROM employee
+   WHERE num = emp_id;
+  END
+//
+
+
+存储过程调用
+CALL num_from _employee(4,@e)                         //输入4 写到变量e里
+SELECT @e                                             //查询成功
+
+
+创建存储函数FUNCTION (只能有输出)
+
+CREATE FUNCTION sp_name                              //定义名字
+([func_parameter[...]])                              //函数参数
+RETURNS type                                         //定义返回值类型
+[characteristic...] routine_body                     //函数体
+
+实例 :
+DELIMITER //
+CREATE FUNCTION name_from_employee (emp_id)
+  RETURNS VARCHAR(20)
+  BEGIN 
+    RETURN (SELECT name FROM employee WHERE num=emp_id) ;
+  END
+//
+SELECT name_from_employee(4)
+
+
+变量的使用
+1.定义
+DECLARE my_x INT DEFAULT 12
+2.赋值(2种)
+SET my_x = 60;
+SELECT d_id INTO my_x FROM employee WHERE num=2;
+
+实例 : (待补)
+DELIMITER //
+CREATE PROCEDURE ...
+CALL ...(2,@result)
+SELECT @result
+
+
+
+其他
+查询权限 information_schema.USER_PRIVILEGES
+调用过程 CALL
+调用函数 SELECT 
+查看
+SHOW { PROCEDURE | FUNCTION } STATUS [ LIKE '...' ]
+SHOW CREATE
+SELECT * FROM information_schame.Routines WHERE ROUTINE_NAME = "..." ;
+修改
+ALTER { PROCEDURE | FUNCTION } MODIFIES SQL DATA SQL SECURITY INVOKER
+删除
+DROP PROCEDURE ...
+
+
+
+
+
 
