@@ -74,12 +74,66 @@ DROP PROCEDURE ...
 
 
 作业
-在teacher表上创建名为teacher_info1a和teacher_info1b的存储过程和名为teacher_info2的存储函数。（1）存储过程teacher_info1a的要求：
+在teacher表上创建名为teacher_info1a和teacher_info1b的存储过程和名为teacher_info2的存储函数。
+
+CREATE TABLE teacher(
+id INT(4) PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT,
+num INT(10) NOT NULL UNIQUE,
+name VARCHAR(20) NOT NULL,
+sex VARCHAR(4) NOT NULL, 
+birthday DATETIME ,
+address VARCHAR(50));
+
+INSERT INTO teacher VALUES
+(1, 1001, '张三','男' ,'1984-11-08' ,'北京市昌平区'),
+(2, 1002, '李四','女' ,'1970-01-21' ,'北京市海淀区'),
+(3, 1003, '王五','男' ,'1976-10-30' ,'北京市昌平区'),
+(4, 1004, '赵六','男' ,'1980-06-05' ,'北京市顺义区');
+
+（1）存储过程teacher_info1a的要求：
 输入参数teacher_id,一个输出参数info，查询出与teacher_id值相等的姓名，由info输出；
+DELIMITER //
+CREATE PROCEDURE teacher_info1a 
+(IN teacher_id INT,OUT info VARCHAR(20))
+READS SQL DATA
+  BEGIN
+    SELECT name INTO info FROM teacher WHERE id = teacher_id;
+  END
+//
+
+CALL teacher_info1a (3,@q)//
+SELECT @q//
+
+
 （2）存储过程teacher_info1b的要求：
 输入参数teacher_id,一个输出参数info，查询出与teacher_id值相等者的年龄，由info输出。
+CREATE PROCEDURE teacher_info1b 
+(IN teacher_id INT,OUT info DATETIME)
+READS SQL DATA
+  BEGIN
+    SELECT '201800000000'-birthday INTO info FROM teacher WHERE id = teacher_id ;
+  END
+//
+CALL teacher_info1b(1,@q)//
+SELECT @q//
+
+
 （2）分别调用这两个存储过程；查询info的输出结果。
-（3）删除teacher_info1a这个存储过程。（4）把存储过程teacher_info1b改为存储函数teacher_info2，并测试。
+CALL teacher_info1a (3,@q)//
+SELECT @q//
+CALL teacher_info1b(1,@q)//
+SELECT @q//
+
+
+（3）删除teacher_info1a这个存储过程。
+DROP PROCEDURE teacher_info1a//
+
+（4）把存储过程teacher_info1b改为存储函数teacher_info2，并测试。
+CREATE FUNCTION teacher_info2(teacher_id)
+RETUENS DATETIME
+BEGIN
+
+
 
 
 
